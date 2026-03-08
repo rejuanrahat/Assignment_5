@@ -70,3 +70,17 @@ function displayData(items) {
             grid.appendChild(card);
     });
 }
+
+function renderYellowTags(labelsData) {
+    if (!labelsData) return '';
+    let tags = Array.isArray(labelsData) ? labelsData : labelsData.split(',');
+    let html = '';
+    tags.forEach(tag => {
+        let cleanTag = tag.trim().toUpperCase();
+        if (cleanTag) {
+            html += `<span style="background-color:#facc15; color:#000; padding:2px 8px;
+                        border-radius:6px; font-size:9px; font-weight:bold;">${cleanTag}</span>`;
+        }
+    });
+    return html;
+}
