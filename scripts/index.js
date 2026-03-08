@@ -97,3 +97,23 @@ function performSearch() {
     );
     displayData(filtered);
 }
+
+function filterBy(type) {
+    const btns = ['all', 'open', 'closed'];
+    btns.forEach(b => {
+        const el = document.getElementById(`btn-${b}`);
+        el.className = b === type
+            ? 'btn btn-sm md:btn-md btn-primary px-8 font-bold text-white'
+            : 'btn btn-sm md:btn-md btn-outline px-8 font-bold';
+    });
+
+    if (type === 'all') {
+        displayData(allData);
+    } else {
+        const filtered = allData.filter(i =>
+            (i.status && i.status.toLowerCase() === type) ||
+            (i.category && i.category.toLowerCase() === type)
+        );
+        displayData(filtered);
+    }
+}
