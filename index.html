@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -10,8 +10,29 @@
     <title>GitHub Issues Tracker</title>
 </head>
 
-<body>
+<body class="bg-gray-100 min-h-screen">
 
+    <section id="login-page" class="flex items-center justify-center min-h-screen">
+        <div class="card w-96 bg-white shadow-xl border p-6 text-center">
+            <img src="./assets/github-logo.png" alt="" class="w-16 h-16 mx-auto mb-2">
+            <h2 class="text-2xl font-bold">Issues Tracker</h2>
+            <p class="text-gray- text-sm mb-6">Sign in to manage your issues</p>
+
+            <div class="form-control mb-4 text-left">
+                <label class="label"><span class="label-text font-bold">Username</span></label>
+                <input type="text" id="username" placeholder="admin" class="input input-bordered w-full">
+            </div>
+            <div class="form-control mb-4 text-left">
+                <label class="label"><span class="label-text font-bold">Password</span></label>
+                <input type="password" id="password" placeholder="admin123" class="input input-bordered w-full">
+            </div>
+            <button id="login-btn" class="btn btn-primary w-full text-white font-bold">Sign In</button>
+            <div class="mt-6 p-4 bg-gray-50 border border-dashed border-gray-300 rounded-lg text-xs">
+                <p>username: <strong>admin</strong></p>
+                <p>password: <strong>admin123</strong></p>
+            </div>
+        </div>
+    </section>
 
     <script src="scripts/index.js"></script>
 </body>
