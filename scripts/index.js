@@ -84,3 +84,16 @@ function renderYellowTags(labelsData) {
     });
     return html;
 }
+
+
+document.getElementById('search-btn').addEventListener('click', () => performSearch());
+document.getElementById('search-input').addEventListener('input', () => performSearch());
+
+function performSearch() {
+    const val = document.getElementById('search-input').value.toLowerCase();
+    const filtered = allData.filter(i => 
+        i.title.toLowerCase().includes(val) ||
+        i.description.toLowerCase().includes(val)
+    );
+    displayData(filtered);
+}
