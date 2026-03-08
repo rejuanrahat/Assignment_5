@@ -101,47 +101,48 @@
     </section>
 
     <dialog id="details_modal" class="modal">
-        <div class="modal-box max-w-2xl bg-white p-8">
+        <div class="modal-box max-w-3xl bg-white p-10 rounded-2xl shadow-2xl">
 
-            <div class="flex flex-wrap gap-2 mb-3" id="m-category-tags">
+            <div class="flex flex-wrap gap-2 mb-2" id="m-category-tags"></div>
 
-                <h3 id="m-title" class="font-bold text-2xl mb-3 text-gray-800"></h3>
+            <h3 id="m-title" class="font-bold text-[28px] mb-4 text-[#1a1e2b]"></h3>
 
-                <div class="flex items-center gap-4 mb-4">
-                    <span id="m-status-badge" class="text-xs font-bold"></span>
-                    <span id="m-date" class="text-xs text-gray-400 flex items-center gap-1"></span>
+            <div class="flex items-center gap-5 mb-5">
+                <span id="m-status-badge" class="text-sm font-bold flex items-center"></span>
+                <span id="m-date" class="text-sm text-gray-400 flex items-center gap-2"></span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-6" id="m-tags"></div>
+
+            <p id="m-desc" class="text-gray-600 mb-8 leading-relaxed text-[15px] border-b pb-8 border-gray-100"></p>
+
+            <div class="grid grid-cols-3 gap-6 p-5 bg-white rounded-xl border border-gray-200 mt-4">
+                <div>
+                    <p class="text-[11px] text-gray-400 uppercase font-bold tracking-wider mb-2">Author</p>
+                    <p id="m-author" class="font-bold text-[#1a1e2b] text-[15px] flex items-center gap-2"></p>
                 </div>
-
-                <div class="flex flex-wrap gap-2 mb-4" id="m-tags"></div>
-
-                <p id="m-desc" class="text-gray-600 mb-6 leading-relaxed text-sm border-b pb-6"></p>
-
-                <div class="grid grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg border mt-4">
-                    <div>
-                        <p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">Author</p>
-                        <p id="m-author" class="font-bold text-gray-800 text-sm flex items-center gap-1"></p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">Priority</p>
-                        <p id="m-priority" class="font-bold text-gray-800 text-sm flex items-center gap-1"></p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">Assignee</p>
-                        <p id="m-assignee" class="font-bold text-gray-800 text-sm flex items-center gap-1"></p>
-                    </div>
+                <div>
+                    <p class="text-[11px] text-gray-400 uppercase font-bold tracking-wider mb-2">Priority</p>
+                    <p id="m-priority" class="font-bold text-[#1a1e2b] text-[15px] capitalize"></p>
                 </div>
-
-                <div class="modal-action mt-6">
-                    <form method="dialog">
-                        <button class="btn btn-primary px-10 text-white font-bold">Close</button>
-                    </form>
+                <div>
+                    <p class="text-[11px] text-gray-400 uppercase font-bold tracking-wider mb-2">Assignee</p>
+                    <p id="m-assignee" class="font-bold text-[#1a1e2b] text-[15px] flex items-center gap-2"></p>
                 </div>
             </div>
+
+            <div class="modal-action mt-8 flex justify-end">
+                <form method="dialog">
+                    <button
+                        class="btn bg-[#4f00ff] hover:bg-[#3b00cc] text-white border-2 border-white outline outline-2 outline-[#4f00ff] rounded-lg px-12 py-2 min-h-0 h-auto font-bold">Close</button>
+                </form>
+            </div>
         </div>
-        <form method="dialog" class="modal-backdrop bg-black/40">
+        <form method="dialog" class="modal-backdrop bg-black/30">
             <button>Close</button>
         </form>
     </dialog>
+
 
     <script src="scripts/index.js"></script>
 </body>

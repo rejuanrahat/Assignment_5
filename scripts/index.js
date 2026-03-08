@@ -50,6 +50,7 @@ function displayData(items) {
         card.className = `card bg-white border border-gray-200 border-t-4 ${topBorder} shadow-sm hover:shadow-md transition cursor-pointer`;
         card.onclick = () => showModal(item.id);
 
+
         card.innerHTML = `
         <div class="card-body p-5">
                 <div class="flex justify-between items-center mb-3">
@@ -67,7 +68,7 @@ function displayData(items) {
                 </div>
             </div>
             `;
-            grid.appendChild(card);
+        grid.appendChild(card);
     });
 }
 
@@ -91,7 +92,7 @@ document.getElementById('search-input').addEventListener('input', () => performS
 
 function performSearch() {
     const val = document.getElementById('search-input').value.toLowerCase();
-    const filtered = allData.filter(i => 
+    const filtered = allData.filter(i =>
         i.title.toLowerCase().includes(val) ||
         i.description.toLowerCase().includes(val)
     );
@@ -116,4 +117,60 @@ function filterBy(type) {
         );
         displayData(filtered);
     }
+}
+
+
+
+async function showModal(id) {
+    if (!id) return;
+    toggleLoader(true);
+    try {
+        const res = await fetch(`${API_URL}/issue/${id}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to fetch issue`);
+        const json = await res.json();
+        if (!json.data) throw new Error('No data returned from API');
+        const issue = json.data;
+
+        document.getElementById('m-title').innerText = issue.title;
+        document.getElementById('m-desc').innerText = issue.description;
+        document.getElementById('m-author').innerHTML = `<i class="fas fa-user-circle text-gray-400"></i> ${issue.author || 'N/A'}`;
+        document.getElementById('m-priority').innerText = issue.priority || 'N/A';
+        document.getElementById('m-assignee').innerHTML = `<i class="fas fa-user-check text-gray-400"></i> ${issue.assignee || 'N/A'}`;
+        document.getElementById('m-category-tags').innerHTML = renderYellowTags(issue.category);
+        document.getElementById('m-tags').innerHTML = renderYellowTags(issue.labels || issue.label);
+
+        const isOpen = (issue.status && issue.status.toLowerCase() === 'open') ||
+            (issue.category && issue.category.toLowerCase() === 'open');
+        const statusEl = document.getElementById('m-status-badge');
+        if (isOpen) {
+            statusEl.innerHTML = `<i class="far fa-circle mr-1"></i> Open`;
+            statusEl.style.cssText = 'background:#dcfce7; color:#15803d; border:1px solid #86efac; padding:4px 12px; border-radius:999px;';
+        } else {
+            statusEl.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Closed`;
+            statusEl.style.cssText = 'background:#f3e8ff; color:#7e22ce; border:1px solid #d8b4fe; padding:4px 12px; border-radius:999px;';
+        }
+
+        const dateStr = issue.createdAt
+            ? new Date(issue.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+            : 'N/A';
+        document.getElementById('m-date').innerHTML = `<i class="far fa-calendar mr-1"></i> ${dateStr}`;
+
+        document.getElementById('details_modal').showModal();
+
+    } catch (e) {
+        console.error("Modal Error:", e);
+        console.error("API_URL:", API_URL);
+        console.error("Requested ID:", id);
+    } finally {
+        toggleLoader(false);
+    }
+}
+
+function toggleLoader(show) {
+    document.getElementById('loader').classList.toggle('hidden', !show);
+}
+
+function toggleLoader(show) {
+    document.getElementById('loader').classList.toggle('hidden', !show);
+    document.getElementById('issues-grid').classList.toggle('hidden', show)
 }
