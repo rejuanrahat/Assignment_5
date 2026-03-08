@@ -46,8 +46,10 @@
             <div class="flex-none">
                 <div class="join">
                     <div class="relative flex items-center">
-                        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
-                        <input type="text" id="search-input" placeholder="Search title..." class="input input-bordered join-item pl-9 w-32 md:w-64 focus:outline-none">
+                        <i
+                            class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                        <input type="text" id="search-input" placeholder="Search title..."
+                            class="input input-bordered join-item pl-9 w-32 md:w-64 focus:outline-none">
                     </div>
                     <button id="search-btn" class="btn btn-primary join-item text-white">Search</button>
                 </div>
@@ -57,9 +59,12 @@
         <main class="max-w-7xl mx-auto p-6">
 
             <div class="flex justify-center gap-2 mb-8">
-                <button onclick="filterBy('all')" id="btn-all" class="btn btn-sm md:btn-md btn-primary px-8 font-bold">All</button>
-                <button onclick="filterBy('open')" id="btn-open" class="btn btn-sm md:btn-md btn-outline px-8 font-bold">Open</button>
-                <button onclick="filterBy('closed')" id="btn-closed" class="btn btn-sm md:btn-md btn-outline px-8 font-bold">Closed</button>
+                <button onclick="filterBy('all')" id="btn-all"
+                    class="btn btn-sm md:btn-md btn-primary px-8 font-bold">All</button>
+                <button onclick="filterBy('open')" id="btn-open"
+                    class="btn btn-sm md:btn-md btn-outline px-8 font-bold">Open</button>
+                <button onclick="filterBy('closed')" id="btn-closed"
+                    class="btn btn-sm md:btn-md btn-outline px-8 font-bold">Closed</button>
             </div>
 
             <div class="flex items-center justify-between mb-8 bg-white p-6 rounded-lg border shadow-sm">
@@ -74,14 +79,14 @@
                 </div>
                 <div class="flex items-center gap-3">
                     <div class="flex items-center gap-2 px-4 py-2 rounded-full"
-                    style="background:#dcfce7; border:1px solid #86efac;">
-                    <i class="far fa-circle text-green-600 text-sm"></i>
-                    <span class="font-bold text-green-700 text-sm">open</span>
+                        style="background:#dcfce7; border:1px solid #86efac;">
+                        <i class="far fa-circle text-green-600 text-sm"></i>
+                        <span class="font-bold text-green-700 text-sm">open</span>
                     </div>
                     <div class="flex items-center gap-2 px-4 py-2 rounded-full"
-                    style="background:#f3e8ff; border:1px solid #d8b4fe;">
-                    <i class="fas fa-check-circle text-purple-600 text-sm"></i>
-                    <span class="font-bold text-green-700 text-sm">closed</span>
+                        style="background:#f3e8ff; border:1px solid #d8b4fe;">
+                        <i class="fas fa-check-circle text-purple-600 text-sm"></i>
+                        <span class="font-bold text-green-700 text-sm">closed</span>
                     </div>
                 </div>
             </div>
@@ -94,6 +99,49 @@
             <div id="issues-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
         </main>
     </section>
+
+    <dialog id="details_modal" class="modal">
+        <div class="modal-box max-w-2xl bg-white p-8">
+
+            <div class="flex flex-wrap gap-2 mb-3" id="m-category-tags">
+
+                <h3 id="m-title" class="font-bold text-2xl mb-3 text-gray-800"></h3>
+
+                <div class="flex items-center gap-4 mb-4">
+                    <span id="m-status-badge" class="text-xs font-bold"></span>
+                    <span id="m-date" class="text-xs text-gray-400 flex items-center gap-1"></span>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mb-4" id="m-tags"></div>
+
+                <p id="m-desc" class="text-gray-600 mb-6 leading-relaxed text-sm border-b pb-6"></p>
+
+                <div class="grid grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg border mt-4">
+                    <div>
+                        <p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">Author</p>
+                        <p id="m-author" class="font-bold text-gray-800 text-sm flex items-center gap-1"></p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">Priority</p>
+                        <p id="m-priority" class="font-bold text-gray-800 text-sm flex items-center gap-1"></p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">Assignee</p>
+                        <p id="m-assignee" class="font-bold text-gray-800 text-sm flex items-center gap-1"></p>
+                    </div>
+                </div>
+
+                <div class="modal-action mt-6">
+                    <form method="dialog">
+                        <button class="btn btn-primary px-10 text-white font-bold">Close</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop bg-black/40">
+            <button>Close</button>
+        </form>
+    </dialog>
 
     <script src="scripts/index.js"></script>
 </body>
